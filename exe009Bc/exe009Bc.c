@@ -1,43 +1,43 @@
 /******************************************************************************
 
-Exe009Bb - Faça dois procedimentos que implementem a soma e a multiplicação de	dois	
-números	complexos z e w.
+exe009Bc = faça	 um	 procedimento que	 receba	 como	 parâmetros	 um	 vetor	 de	 inteiros	 de	
+tamanho	N	e	retorne	o	menor e	o	maior elemento	do	vetor.
 
 *******************************************************************************/
 #include <stdio.h>
 
-void somaNComplexos(int zReal, int zImaginaria, int wReal, int wImaginaria){
-    int real = 0, imaginaria = 0;
-    
-    real = zReal + wReal;
-    imaginaria = zImaginaria + wImaginaria; // + i
-    printf("%d + %di\n", real, imaginaria);
-}
+int maiorValor = 0;
+int menorValor = 0;
 
-void multNComplexos(int zReal, int zImaginaria, int wReal, int wImaginaria){
-    int real = 0, imaginaria = 0;
-    
-    real = (zReal * wReal) - (zImaginaria * wImaginaria);
-    imaginaria = (zImaginaria * wReal) + (zReal * wImaginaria); // * i
-    
-    printf("%d + %di\n", real, imaginaria);
+void procuraMenorMaiorValor(int vetor[], int tamanhoVetor){
+    menorValor = vetor[0];
+    maiorValor = vetor[0];
+    for (int i = 0; i < tamanhoVetor; i++) {
+        if(vetor[i] < menorValor){
+            menorValor = vetor[i];
+        }
+        
+        if(vetor[i] > maiorValor){
+            maiorValor = vetor[i];
+        }
+    }
 }
-
 
 int main()
-{   
-    int zReal, zImaginaria, wReal, wImaginaria;
-    char operador;
+{
+    int tamanhoVetor;
+    scanf("%d/n", &tamanhoVetor);
+
+    int vetor[tamanhoVetor];
     
-    scanf("%d %d %c %d %d", &zReal, &zImaginaria, &operador, &wReal, &wImaginaria);
-    
-    if(operador == '+'){
-        somaNComplexos(zReal, zImaginaria, wReal, wImaginaria);
+    for(int i = 0; i < tamanhoVetor; i++){
+        scanf("%d\n", &vetor[i]);
     }
     
-    if(operador == '*'){
-        multNComplexos(zReal, zImaginaria, wReal, wImaginaria);
-    }
+    procuraMenorMaiorValor(vetor, tamanhoVetor);
     
+    printf("maior valor: %d\n", maiorValor);
+    printf("menor valor: %d\n", menorValor);
+
     return 0;
 }
